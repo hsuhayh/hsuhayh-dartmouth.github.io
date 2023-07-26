@@ -8,7 +8,7 @@
 <!-- strong bolds it, em italicizes it-->
 <p>My full name is Hsu Hay Thi Htwe. I go by <strong> Hsu Hay</strong>. It sounds like <em>sue hay</em>. I am from Yangon, Myanmar. </p>
 
-<!-- add image here -->
+<!-- add image in the same folder (as html and picture) -->
 <img src= "yangon.jpg">  
 <p>This is a picture of Yangon, my hometown.  </p>
   
@@ -89,13 +89,17 @@ Click this link to see!
   <li> Singapore </li>
 </ul>  
   
-  <!-- add image here -->
-  <p>This is a picture I took at Da Nang, Vietnam.</p>
-  <!-- add image here -->
-  <p>This is a picture I took at Bangkok, Thailand. </p>
-  <!-- add image here -->
-  <p>This is a picture I took at Singapore.</p>
-  
+  <!-- add image here using root path-->
+  <img src= "/main/da%20nang.jpg"
+  <p>This is a picture of Da Nang, Vietnam.</p>
+  <!-- add image here using full url -->
+  <img src= "https://github.com/hsuhayh/hsuhayh-dartmouth.github.io/blob/main/Jodd%20Fairs.jpg">
+  <p>This is a picture of Bangkok, Thailand. </p>
+  <!-- add image here using relative path-->
+  <img src= "../main/singapore.jpg">
+  <p>This is a picture of Singapore.</p>
+  <!-- relative when the folder is the same-->
+  <!-- absolute when image is on another server-->
 </body>
 
 </html>
