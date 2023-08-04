@@ -33,9 +33,10 @@
     click here to find out how old I am!
   </button>
   <!--adding or removing hidden can change how the button first starts -->
-  < p class = "data" hidden id="job">
+  <p class ="data" hidden id="job">
     I am 21 years old. Legal and unhappy. 
   </p>
+  
   <script>
     // $("p") <-- this references all the <p> tags
     // $("#job") <-- this references all "#job" id's
@@ -43,14 +44,17 @@
 
     // use jQuery to listen for a button click
     // toggle the hidden job message
-    // instead of .hover, I could do.click
+    // instead of .hover, I could do .click
 
     $("button#job").hover(
       function(){
         $("p#job").toggle();
       }
     )
-    
+    $("h3").hover(
+      function() {
+        console.log("h3 hover;");
+      });
   </script>
    
 <p class ="data">
