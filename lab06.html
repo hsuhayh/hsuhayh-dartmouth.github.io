@@ -32,7 +32,7 @@
   <button id= "job">
     click here to find out how old I am!
   </button>
-  
+  <!--adding or removing hidden can change how the button first starts -->
   < p class = "data" hidden id="job">
     I am 21 years old. Legal and unhappy. 
   </p>
@@ -43,8 +43,9 @@
 
     // use jQuery to listen for a button click
     // toggle the hidden job message
+    // instead of .hover, I could do.click
 
-    $("button#job").click(
+    $("button#job").hover(
       function(){
         $("p#job").toggle();
       }
@@ -110,7 +111,24 @@ The last one is CS 25 called Intro to Ui/Ux taught by Natalie Svoboda.  </p>
 Thererfore, I've been on for 21F, 22W, 22S, 22X, 22F, 23W and 23X. 
 When I was off in the spring, I traveled a lot in Asia.
 </p>
+  <button id= "off">
+    click here to find out why I went back home
+  </button>
+  
+  < p class = "data" hidden id="off">
+    I missed my dogs and Burmese food. I also just needed a break after being on for 6 terms. 
+  </p>
+  <script>
 
+    $("button#off").click(
+      function(){
+        $("p#off").show();
+        // .fadeToggle("slow") can also be added instead of .show
+      }
+    )
+    
+  </script>
+   
 <p>
  Flying back home is quite a long route. I went back home in the winterim and made story map about it.
 <a href="https://storymaps.arcgis.com/stories/a04213980182436ca55e18460016d98a">Click this link to see!<a/>
