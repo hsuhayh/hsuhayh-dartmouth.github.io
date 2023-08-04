@@ -1,10 +1,11 @@
-<!DOCTYPE html
+<!DOCTYPE html>
 <html>
 <head>
 <!-- h1 is the biggest header and h3 is a medium-sized-->
 
 <title> Hsu Hay's webpage </title>
 <link rel="stylesheet" href="style05.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   
 <h1> My Life at Dartmouth </h1> 
  
@@ -21,7 +22,36 @@
 <p class ="data">
   My full name is Hsu Hay Thi Htwe. I go by <strong> Hsu Hay</strong>. It sounds like <em>sue hay</em>. I am from Yangon, Myanmar. 
 </p>
+<!--
+<p class = "data">  
+    <script>
+      document.write("I am born and raised in Yangon.");
+      console.log("I wrote to the console log!");
+   </script>
+                -->
+  <button id= "job">
+    click here to find out how old I am!
+  </button>
   
+  < p class = "data" hidden id="job">
+    I am 21 years old. Legal and unhappy. 
+  </p>
+  <script>
+    // $("p") <-- this references all the <p> tags
+    // $("#job") <-- this references all "#job" id's
+    // $(".data") <-- this will reference ".data" classes
+
+    // use jQuery to listen for a button click
+    // toggle the hidden job message
+
+    $("button#job").click(
+      function(){
+        $("p#job").toggle();
+      }
+    )
+    
+  </script>
+   
 <p class ="data">
   On my right is a picture of Yangon, my hometown.
 </p>
