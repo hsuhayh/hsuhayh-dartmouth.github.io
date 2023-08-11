@@ -9,7 +9,7 @@
     html, body { height: 100%; margin: 0; padding: 0; }
   </style>
 
-<script src="New_Hampshire_Railroads.geojson"></script>
+  <script src="New_Hampshire_Railroads.geojson"></script>
 
 </head>
 <body onload="initialize()">
@@ -27,18 +27,17 @@
         center: [43.7034, -72.2887],
         zoom: 15,
         layers: [OpenStreetMap_HOT]
-      })
+      });
 
-L.geoJson(railroads_geojson, {
-color: "blue",
-weight: 3,
-opacity: .5,
-onEachFeature: function(feature, layer)  {
-layer.bindPopup("<b> Railroad Name: " + 
-feature.properties.RailRoadNAME + "</b>");
+      L.geoJson(railroads_geojson, {
+        color: "blue",
+        weight: 3,
+        opacity: 0.5,
+        onEachFeature: function(feature, layer) {
+          layer.bindPopup("<b>Railroad Name: " + feature.properties.RailRoadNAME + "</b>");
+        }
+      }).addTo(map);
     }
-}
-  ).addTo(map);
   </script>
 </body>
 </html>
