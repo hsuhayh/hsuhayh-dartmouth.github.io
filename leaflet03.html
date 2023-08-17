@@ -33,7 +33,7 @@
         layers: [OpenStreetMap_HOT]
       });
       
-      L.geoJson(CTriver_geojson, {
+      L.geoJson(river_geojson, {
         color: "blue",
         weight: 2, 
         opacity: 0.8,
@@ -41,7 +41,7 @@
           layer.bindPopup("<b>Conneticut River Historic Points: " +feature.properties.Name + "</b>");
         }
       }).addTo(map);
-    }
+    
     
       L.geoJson(railroads_geojson, {
         color: "red",
