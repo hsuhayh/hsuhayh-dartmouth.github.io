@@ -62,7 +62,7 @@
       { style: lineSymbology,
         onEachFeature: function(feature, layer) {
           layer.bindPopup("<b>Railroad Name: " + feature.properties.NAME + "</b><br>"
-                         +"Status" + feature.properties.STATUS );
+                         +"Status: " + feature.properties.STATUS );
         }
      
       }).addTo(map);
