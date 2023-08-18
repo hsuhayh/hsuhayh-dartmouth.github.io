@@ -4,12 +4,13 @@
   <title>Hello Campus!</title>
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   <style>
     #map { height: 400px; width: 700px; }
     html, body { height: 100%; margin: 0; padding: 0; }
   </style>
   
-<script scr= "NH_Historic_and_Cultural_Features_(CT_River).geojson"> </script>
+<script src= "NH_Historic_and_Cultural_Features_(CT_River).geojson"> </script>
   
 
   
@@ -21,11 +22,27 @@
   <div id="map"></div>
 
   <script>
+    var railroadLayer;
     var OpenStreetMap_HOT = L.tileLayer('https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
       maxZoom: 19,
       attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>, Tiles courtesy of <a href="http://hot.osm.org">HOT OSM</a>'
     });
 
+    function lineSymbology(feature) {
+      var status = feature.properties.Status;
+      var lineWidth = 4; 
+      var lineColor = "#2CA25F";
+
+      if (status == "Active" ) {lineColor ="green"; lineWidth = 5}
+      else {lineColor ="red"; lineWidth = 5}
+                       
+
+      return {
+        color :lineColor
+          weight: lineWidth
+          opacity: 1
+                      };
+    }
     function initialize() {
       var map = L.map('map', {
         center: [43.7034, -72.2887],
@@ -43,19 +60,28 @@
       }).addTo(map);
     
     
-      L.geoJson(railroads_geojson, {
-        color: "red",
-        weight: 3,
-        opacity: 0.5,
+    railroadLayer =  L.geoJson(railroads_geojson,
+      { style: lineSymbology,
         onEachFeature: function(feature, layer) {
-          layer.bindPopup("<b>Railroad Name: " + feature.properties.NAME + "</b>");
+          layer.bindPopup("<b>Railroad Name: " + feature.properties.NAME + "</b><br>"
+                         +"Status" + feature.properties.STATUS );
         }
+     
       }).addTo(map);
+      $("#toggleRailroads").click( function() {
+        if (RailroadVisible) {
+          RailroadVisible = false;
+          railroadLayer.removeFrom(map);
+        } else {
+          RailroadVisible = true;
+          railroadLayer.addTo(Map);
+        }
+      })
     }
   </script>
 
   <div id="button">
-    <button id="toggleRailoads"> Toggle the Railroads layer. </button>
+    <button id="toggleRairoads"> Toggle the Railroads layer. </button>
   </div>
   
 </body>
