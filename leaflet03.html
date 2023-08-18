@@ -3,14 +3,12 @@
 <head>
   <title>Hello Campus!</title>
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
-  ###
-  ###
+
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-  ###
-  ###
+
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   <style>
-    #map { height: 400px; width: 700px; }
+    #map { height: 400px; width: 400px; }
     html, body { height: 100%; margin: 0; padding: 0; }
     #buttons { padding: 10px, background: #f4d1c4; }
   </style>
@@ -27,10 +25,10 @@
       attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>, Tiles courtesy of <a href="http://hot.osm.org">HOT OSM</a>'
     });
 
-    var ####
-      ###
-      ##
-      $###
+   var Stadia_AlidadeSmooth = L.tileLayer('https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}{r}.png', {
+	maxZoom: 20,
+	attribution: '&copy; <a href="https://stadiamaps.com/">Stadia Maps</a>, &copy; <a href="https://openmaptiles.org/">OpenMapTiles</a> &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors'
+});
 
     function lineSymbology(feature) {
       var status = feature.properties.Status;
@@ -46,17 +44,16 @@
         opacity: 1
                       };
     }
-    
+  
     $(document).ready(function() {
       var map = L.map('map', {
         center: [43.7034, -72.2887],
         zoom: 15,
       
       });
-### var baseMaps = {"OSM" : OpenStreetMap_HOT, "" : };
+    var baseMaps = {"OSM" : OpenStreetMap_HOT, "Stadia_AlidadeSmooth" : Stadia_AlidadeSmooth };
     L.control.layers(baseMaps).addTo(map);
-    
-   ###   
+     
       L.geoJson(river_geojson, {
         color: "blue",
         weight: 2, 
@@ -85,7 +82,7 @@
           railroadLayer.addTo(Map);
         }
       })
-   ###
+
     }
   </script>
 </head>
