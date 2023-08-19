@@ -63,7 +63,7 @@ var response= $.ajax({
 	}
 });
 	$.when(response).done(function() {
-	   railroadLayer =  L.geoJson(railroads_geojson,
+	   railroadLayer =  L.geoJson(response.responseJSON,
       		{style: lineSymbology,
         	onEachFeature: function(feature, layer) {
           	layer.bindPopup("<b>Railroad Name: " + feature.properties.NAME + "</b><br>"
