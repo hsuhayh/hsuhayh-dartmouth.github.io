@@ -55,22 +55,22 @@
     L.control.layers(baseMaps).addTo(map);
 
 var response= $.ajax({
-	url "",
+	url: "Railroads2.geojson",
 	dataType: "json",
 	success: console.log("railroad data loaded!"),
 	error: function(xhr) {
 		alert(xhr.statusText);
 	}
 });
-	$.when(response).done(function(){
+	$.when(response).done(function() {
 	   railroadLayer =  L.geoJson(railroads_geojson,
-      { style: lineSymbology,
-        onEachFeature: function(feature, layer) {
-          layer.bindPopup("<b>Railroad Name: " + feature.properties.NAME + "</b><br>"
+      		{style: lineSymbology,
+        	onEachFeature: function(feature, layer) {
+          	layer.bindPopup("<b>Railroad Name: " + feature.properties.NAME + "</b><br>"
                          +"Status: " + feature.properties.STATUS );
         }
      
-      });
+      }).addTo(map);
 	    
       L.geoJson(river_geojson, {
         color: "blue",
