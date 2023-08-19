@@ -18,8 +18,7 @@
 
 
   <script>
-    var railroadLayer;
-    var RailroadVisible = false;
+    var RailroadVisible = true;
     var OpenStreetMap_HOT = L.tileLayer('https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
       maxZoom: 19,
       attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>, Tiles courtesy of <a href="http://hot.osm.org">HOT OSM</a>'
@@ -54,7 +53,25 @@
 	OpenStreetMap_HOT.addTo(map);
     var baseMaps = {"OSM" : OpenStreetMap_HOT, "USGS" : USGS };
     L.control.layers(baseMaps).addTo(map);
+
+var response= $.ajax({
+	url "",
+	dataType: "json",
+	success: console.log("railroad data loaded!"),
+	error: function(xhr) {
+		alert(xhr.statusText);
+	}
+});
+	$.when(response).done(function(){
+	   railroadLayer =  L.geoJson(railroads_geojson,
+      { style: lineSymbology,
+        onEachFeature: function(feature, layer) {
+          layer.bindPopup("<b>Railroad Name: " + feature.properties.NAME + "</b><br>"
+                         +"Status: " + feature.properties.STATUS );
+        }
      
+      });
+	    
       L.geoJson(river_geojson, {
         color: "blue",
         weight: 2, 
@@ -65,14 +82,7 @@
       }).addTo(map);
     
     
-    railroadLayer =  L.geoJson(railroads_geojson,
-      { style: lineSymbology,
-        onEachFeature: function(feature, layer) {
-          layer.bindPopup("<b>Railroad Name: " + feature.properties.NAME + "</b><br>"
-                         +"Status: " + feature.properties.STATUS );
-        }
-     
-      });
+ 
       
       $("#toggleRailroads").click( function() {
         if (RailroadVisible) {
