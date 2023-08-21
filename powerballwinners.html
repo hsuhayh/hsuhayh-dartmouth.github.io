@@ -27,7 +27,10 @@
         </style>
         <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A==" crossorigin=""/>
         <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin=""></script>
-    
+        <!-- Global IE fix to avoid layout crash when single word size wider than column width -->
+        <!--[if IE]><style type="text/css"> body {word-wrap: break-word;}</style><![endif]-->
+        <!-- Map of Winners End -->
+        <!-- State-wise Distribution of Winners Start-->
         <script type='text/javascript' src='https://www.google.com/jsapi'></script>
         <script type='text/javascript'>
 
@@ -188,17 +191,25 @@
                 geomap.draw(data, options);
             }
             ;</script>
-       
+        <!-- State-wise Distribution of Winners End -->
     </head>
 
+  
+                    <h1>Powerball Jackpot Winners Map</h1>
+                    Check all the Powerball jackpot winners on map. The map show where the jackpot winning ticket was sold.
 				 
 				 
 				<br>
                
+                    <a class="btn btn-danger btn-md" href="https://portalseven.com/lottery/us_jackpot_winners.jsp" title="Check all US Jackpot Winners">
+                        <b>All Powerball &Powerball Jackpot Winners</b>
+                    </a>
                 </div>
                 <div>
                     <table class="table">
-                     
+                        <tr>
+                            <td align="center" class='odd'>This is the map of all the locations where Powerball jackpot winning ticket was sold.</td>
+                        </tr>
                         <tr>
                             <td align="center">
                                 <table width="100%" align="center">
@@ -213,6 +224,23 @@
                                                     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                                                 }).addTo(map);
 
+                                                var LeafIcon = L.Icon.extend({
+                                                    options: {
+
+                                                        iconSize: [20, 30],
+                                                        shadowSize: [50, 64],
+                                                        iconAnchor: [22, 94],
+                                                        shadowAnchor: [4, 62],
+                                                        popupAnchor: [-3, -76]
+                                                    }
+                                                });
+
+                                                var powerballIcon = new LeafIcon({
+                                                    iconUrl: 'https://portalseven.com/images/powerball-marker.png'
+                                                })
+                                                  , powerballIcon = new LeafIcon({
+                                                    iconUrl: 'https://portalseven.com/images/powerball-marker.png'
+                                                })
                                                   , orangeIcon = new LeafIcon({
                                                     iconUrl: 'leaf-orange.png'
                                                 });
@@ -695,25 +723,51 @@
 
                                                 L.marker([45.079339, -97.116394]).bindPopup('<TABLE class="table table-striped table-condensed table-bordered"><TR><TD>Lottery</TD><TD>:</TD>	<TD><b>Powerball</b></TD></TR><TR><TD>Winner</TD><TD>:</TD>	<TD><b>Watertown 34</b></TD></TR><TR><TD>Draw Date</TD>	<TD>:</TD>	<TD><b>February 01, 2003</b></TD></TR><TR><TD>Prize</TD>	<TD>:</TD>	<TD><b>$101 million</b></TD></TR><TR><TD>Numbers</TD>	<TD>:</TD>	<TD><b>2-11-16-21-39/42/5</b></TD></TR><TR><TD>Retailer</TD>	<TD>:</TD>	<TD><b>Cowboy Country Stores</b></TD></TR><TR><TD>Address</TD>	<TD>:</TD>	<TD><b>504 9th Ave SE, Watertown, SD 57201</b></TD></TR></TABLE>').addTo(map);
 
+                                                //L.marker([40.6096629,-74.1495837]).bindPopup('OK MAN.').addTo(map);
+                                                //L.marker([40.922269,-73.863072]).bindPopup('GOOD MORNING').addTo(map);
+                                                //L.marker([40.750909,-73.99089]).bindPopup('JUST <b>DO</b><br> IT').addTo(map);
                                             </script>
                                         </td>
                                     </tr>
                                 </table>
                             </td>
                         </tr>
-                            
+                        <!--
+					<tr>
+						<td align="center">
+							<table class="table">
+								<tr>
+									 <TD class="text-center"> 
+										<h2>Heat Map of Powerball Winners by State</h2> 
+										<div id='map_canvas'></div>
+									</td>
+								</tr>
+							</table>
+						</td>
+					</tr> 
+	
+                                                  
                                 </TABLE>
                             </TD>
                         </TR>
                     </TABLE>
                 </div>
             </div>
-       
+            <!-- /.blog-sidebar -->
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.container -->
+    <div class="blog-footer">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="text-center">
                     
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
     <script>
         window.jQuery || document.write('<script src="js/vendor/jquery.1.10.2.min.js"><\/script>')
     </script>
+    <script src="https://portalseven.com/js/rrssb.min.js"></script>
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC6baQGAKueoNsZuSYn5vLNkChuxxNZvFg&callback=initMap"></script>
 </body></html>
