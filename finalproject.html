@@ -16,7 +16,7 @@
 <script src= "NH_Historic_and_Cultural_Features_(CT_River).geojson"> </script>
 <script src="New_Hampshire_Railroads.geojson"></script>
 
-<script src="powerballwinners.html"</script> 
+
   <script>
     var RailroadVisible = true;
     var OpenStreetMap_HOT = L.tileLayer('https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
@@ -29,20 +29,6 @@
 	                                      attribution: 'Tiles courtesy of the <a href="https://usgs.gov/">U.S. Geological Survey</a>'
                                       });
 
-    function lineSymbology(feature) {
-      var status = feature.properties.STATUS;
-      var lineWidth = 4; 
-      var lineColor = "#2CA25F";
-
-      if (status == "Active" ) {lineColor = "#355E3B"; lineWidth = 5; }
-      else {lineColor = "#FF0000"; lineWidth = 5; }
-                       
-      return {
-        color :lineColor,
-        weight: lineWidth,
-        opacity: 1
-      };
-    }
 
     $(document).ready(function() {
       var map = L.map('map', {
