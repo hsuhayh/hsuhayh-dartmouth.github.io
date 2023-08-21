@@ -191,25 +191,17 @@
                 geomap.draw(data, options);
             }
             ;</script>
-        <!-- State-wise Distribution of Winners End -->
+       
     </head>
 
-  
-                    <h1>Powerball Jackpot Winners Map</h1>
-                    Check all the Powerball jackpot winners on map. The map show where the jackpot winning ticket was sold.
 				 
 				 
 				<br>
                
-                    <a class="btn btn-danger btn-md" href="https://portalseven.com/lottery/us_jackpot_winners.jsp" title="Check all US Jackpot Winners">
-                        <b>All Powerball &Powerball Jackpot Winners</b>
-                    </a>
                 </div>
                 <div>
                     <table class="table">
-                        <tr>
-                            <td align="center" class='odd'>This is the map of all the locations where Powerball jackpot winning ticket was sold.</td>
-                        </tr>
+                     
                         <tr>
                             <td align="center">
                                 <table width="100%" align="center">
@@ -224,23 +216,6 @@
                                                     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                                                 }).addTo(map);
 
-                                                var LeafIcon = L.Icon.extend({
-                                                    options: {
-
-                                                        iconSize: [20, 30],
-                                                        shadowSize: [50, 64],
-                                                        iconAnchor: [22, 94],
-                                                        shadowAnchor: [4, 62],
-                                                        popupAnchor: [-3, -76]
-                                                    }
-                                                });
-
-                                                var powerballIcon = new LeafIcon({
-                                                    iconUrl: 'https://portalseven.com/images/powerball-marker.png'
-                                                })
-                                                  , powerballIcon = new LeafIcon({
-                                                    iconUrl: 'https://portalseven.com/images/powerball-marker.png'
-                                                })
                                                   , orangeIcon = new LeafIcon({
                                                     iconUrl: 'leaf-orange.png'
                                                 });
@@ -732,21 +707,7 @@
                                 </table>
                             </td>
                         </tr>
-                        <!--
-					<tr>
-						<td align="center">
-							<table class="table">
-								<tr>
-									 <TD class="text-center"> 
-										<h2>Heat Map of Powerball Winners by State</h2> 
-										<div id='map_canvas'></div>
-									</td>
-								</tr>
-							</table>
-						</td>
-					</tr> 
-	
-                                                  
+                            
                                 </TABLE>
                             </TD>
                         </TR>
@@ -768,6 +729,5 @@
     <script>
         window.jQuery || document.write('<script src="js/vendor/jquery.1.10.2.min.js"><\/script>')
     </script>
-    <script src="https://portalseven.com/js/rrssb.min.js"></script>
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC6baQGAKueoNsZuSYn5vLNkChuxxNZvFg&callback=initMap"></script>
 </body></html>
