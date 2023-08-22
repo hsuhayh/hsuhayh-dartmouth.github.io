@@ -30,6 +30,14 @@
 	                                      attribution: 'Tiles courtesy of the <a href="https://usgs.gov/">U.S. Geological Survey</a>'
                                       });
 
+    var Stamen_TonerLite = L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/toner-lite/{z}/{x}/{y}{r}.{ext}', {
+		attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+		subdomains: 'abcd',
+		minZoom: 0,
+		maxZoom: 20,
+		ext: 'png'
+	});
+
 	
 
     $(document).ready(function() {
@@ -39,26 +47,11 @@
       
       });
 	OpenStreetMap_HOT.addTo(map);
-    var baseMaps = {"OSM" : OpenStreetMap_HOT, "USGS" : USGS };
+    var baseMaps = {"OSM" : OpenStreetMap_HOT, "USGS" : USGS, "Monochrome" : Stamen_TonerLite };
     L.control.layers(baseMaps).addTo(map);
 
-var Stamen_TonerLite = L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/toner-lite/{z}/{x}/{y}{r}.{ext}', {
-	attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-	subdomains: 'abcd',
-	minZoom: 0,
-	maxZoom: 20,
-	ext: 'png'
-});
+
 	    
-$(document).ready(function() {
-      var map = L.map('map', {
-        center: [43.7034, -72.2887],
-        zoom: 15,
-      
-      });
-	OpenStreetMap_HOT.addTo(map);
-    var baseMaps = {"OSM" : OpenStreetMap_HOT, "Monochrome" : Stamen_TonerLite };
-    L.control.layers(baseMaps).addTo(map);
 	
 var response= $.ajax({
 	url: "Railroads2.geojson",
@@ -102,8 +95,6 @@ var response= $.ajax({
       })
 	
       });
-
-    });
     });
   </script>
 </head>
