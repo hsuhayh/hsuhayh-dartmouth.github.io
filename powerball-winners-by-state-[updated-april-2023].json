@@ -1,0 +1,212 @@
+[
+  {
+    "state": "Indiana",
+    "numWinners": 39,
+    "percTotalWinners": 9.7
+  },
+  {
+    "state": "Missouri",
+    "numWinners": 31,
+    "percTotalWinners": 7.7
+  },
+  {
+    "state": "Minnesota",
+    "numWinners": 22,
+    "percTotalWinners": 5.5
+  },
+  {
+    "state": "Pennsylvania",
+    "numWinners": 19,
+    "percTotalWinners": 4.7
+  },
+  {
+    "state": "Wisconsin",
+    "numWinners": 19,
+    "percTotalWinners": 4.7
+  },
+  {
+    "state": "Kentucky",
+    "numWinners": 18,
+    "percTotalWinners": 4.5
+  },
+  {
+    "state": "Louisiana",
+    "numWinners": 17,
+    "percTotalWinners": 4.2
+  },
+  {
+    "state": "Florida",
+    "numWinners": 16,
+    "percTotalWinners": 4
+  },
+  {
+    "state": "Arizona",
+    "numWinners": 14,
+    "percTotalWinners": 3.5
+  },
+  {
+    "state": "California",
+    "numWinners": 12,
+    "percTotalWinners": 3
+  },
+  {
+    "state": "Kansas",
+    "numWinners": 12,
+    "percTotalWinners": 3
+  },
+  {
+    "state": "New York",
+    "numWinners": 12,
+    "percTotalWinners": 3
+  },
+  {
+    "state": "District of Columbia",
+    "numWinners": 11,
+    "percTotalWinners": 2.7
+  },
+  {
+    "state": "New Hampshire",
+    "numWinners": 11,
+    "percTotalWinners": 2.7
+  },
+  {
+    "state": "New Jersey",
+    "numWinners": 11,
+    "percTotalWinners": 2.7
+  },
+  {
+    "state": "Delaware",
+    "numWinners": 10,
+    "percTotalWinners": 2.5
+  },
+  {
+    "state": "Nebraska",
+    "numWinners": 10,
+    "percTotalWinners": 2.5
+  },
+  {
+    "state": "Connecticut",
+    "numWinners": 9,
+    "percTotalWinners": 2.2
+  },
+  {
+    "state": "Iowa",
+    "numWinners": 9,
+    "percTotalWinners": 2.2
+  },
+  {
+    "state": "West Virginia",
+    "numWinners": 9,
+    "percTotalWinners": 2.2
+  },
+  {
+    "state": "Rhode Island",
+    "numWinners": 8,
+    "percTotalWinners": 2
+  },
+  {
+    "state": "Tennessee",
+    "numWinners": 7,
+    "percTotalWinners": 1.7
+  },
+  {
+    "state": "Georgia",
+    "numWinners": 6,
+    "percTotalWinners": 1.5
+  },
+  {
+    "state": "Massachusetts",
+    "numWinners": 6,
+    "percTotalWinners": 1.5
+  },
+  {
+    "state": "North Carolina",
+    "numWinners": 6,
+    "percTotalWinners": 1.5
+  },
+  {
+    "state": "South Carolina",
+    "numWinners": 6,
+    "percTotalWinners": 1.5
+  },
+  {
+    "state": "Idaho",
+    "numWinners": 5,
+    "percTotalWinners": 1.2
+  },
+  {
+    "state": "Michigan",
+    "numWinners": 5,
+    "percTotalWinners": 1.2
+  },
+  {
+    "state": "New Mexico",
+    "numWinners": 5,
+    "percTotalWinners": 1.2
+  },
+  {
+    "state": "Oregon",
+    "numWinners": 5,
+    "percTotalWinners": 1.2
+  },
+  {
+    "state": "Montana",
+    "numWinners": 4,
+    "percTotalWinners": 1
+  },
+  {
+    "state": "Oklahoma",
+    "numWinners": 4,
+    "percTotalWinners": 1
+  },
+  {
+    "state": "Colorado",
+    "numWinners": 3,
+    "percTotalWinners": 0.7
+  },
+  {
+    "state": "Maryland",
+    "numWinners": 3,
+    "percTotalWinners": 0.7
+  },
+  {
+    "state": "Ohio",
+    "numWinners": 3,
+    "percTotalWinners": 0.7
+  },
+  {
+    "state": "South Dakota",
+    "numWinners": 3,
+    "percTotalWinners": 0.7
+  },
+  {
+    "state": "Illinois",
+    "numWinners": 2,
+    "percTotalWinners": 0.5
+  },
+  {
+    "state": "Texas",
+    "numWinners": 2,
+    "percTotalWinners": 0.5
+  },
+  {
+    "state": "Virginia",
+    "numWinners": 2,
+    "percTotalWinners": 0.5
+  },
+  {
+    "state": "Washington",
+    "numWinners": 2,
+    "percTotalWinners": 0.5
+  },
+  {
+    "state": "Arkansas",
+    "numWinners": 1,
+    "percTotalWinners": 0.2
+  },
+  {
+    "state": "Vermont",
+    "numWinners": 1,
+    "percTotalWinners": 0.2
+  }
+]
