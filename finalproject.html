@@ -13,13 +13,9 @@
     html, body { height: 100%; margin: 0; padding: 0; }
     #buttons { padding: 10px }
   </style>
-  
-<script src= "NH_Historic_and_Cultural_Features_(CT_River).geojson"> </script>
-<script src="New_Hampshire_Railroads.geojson"></script>
-<script src="powerballwinners.html"></script>
+
 
   <script>
-    var RailroadVisible = true;
     var OpenStreetMap_HOT = L.tileLayer('https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
       maxZoom: 19,
       attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>, Tiles courtesy of <a href="http://hot.osm.org">HOT OSM</a>'
@@ -79,20 +75,6 @@ var response= $.ajax({
           layer.bindPopup("<b>Conneticut River Historic Points: " +feature.properties.NAME + "</b>");
         }
       }).addTo(map);
-    
-    
- 
-      
-      $("#toggleRailroads").click( function() {
-        if (RailroadVisible) {
-          RailroadVisible = false;
-          railroadLayer.removeFrom(map);
-        } else {
-          RailroadVisible = true;
-          railroadLayer.addTo(map);
-        }
-
-      })
 	
       });
     });
@@ -110,9 +92,6 @@ What if we can make your chances of being lucky higher by finding the right plac
 	</p>
 	<a href="https://hsuhayh.github.io/hsuhayh-dartmouth.github.io/powerballwinners.html">Go to another map that shows you data points!</a>
   <div id="map"></div>
-  <div id="buttons">
-    <button id="toggleRailroads"> Toggle to go the map showing winners </button>
-  </div>
   
 </body>
 </html>
