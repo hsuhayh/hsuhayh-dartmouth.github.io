@@ -18,7 +18,7 @@ F<!DOCTYPE html>
 <script src="groundwater.geojson"></script>
 <script src="riverscientist.geojson"></script>
 	
-<!-- this is for all tthe map layers-->	
+<!-- this is for all the map layers-->	
   <script>
    var waterclasslayer;
    var waterclassvisible = true;
@@ -39,28 +39,13 @@ F<!DOCTYPE html>
 						ext: 'png'
 				       });
 
-//     function lineSymbology(feature)
-// {
-//       var status = feature.properties.STATUS;
-//       var lineWidth = 4; 
-//       var lineColor = "#2CA25F";
-
-//       if (status == "Active" ) {lineColor = "#355E3B"; lineWidth = 5; }
-//       else {lineColor = "#FF0000"; lineWidth = 5; }
-                       
-//       return {
-//         color :lineColor,
-//         weight: lineWidth,
-//         opacity: 1
-//       };
-// }
 
     $(document).ready(function()
 {
       var map = L.map('map',
 	{
         center: [44.5588, -72.5778],
-        zoom: 5,
+        zoom: 8,
       
         });
 	OpenStreetMap_HOT.addTo(map);
@@ -83,12 +68,15 @@ F<!DOCTYPE html>
 			     });
 	$.when(response).done(function() {
 	waterclasslayer =  L.geoJson(response.responseJSON,
-      		{style: color:red;
+      		{style: {
+			color:red,
+			weight:4;
+		}
         	onEachFeature: function(feature, layer) 
 		{layer.bindPopup("<b>Water Classification Name: " + feature.properties.Name + "</b><br>"
                          +"Status: " + feature.properties.Description );
                 }
-     		}).addTo(map);
+	}}).addTo(map);
 	    
       L.geoJson(riverscientist_geojson, 
 		{color: "blue",
