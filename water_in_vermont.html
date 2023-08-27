@@ -1,4 +1,4 @@
-F<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
   <title>Water in Vermont</title>
@@ -22,7 +22,7 @@ F<!DOCTYPE html>
   <script>
    var waterclasslayer;
    var waterclassvisible = true;
-    var OpenStreetMap_HOT = L.tileLayer('https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png',
+   var OpenStreetMap_HOT = L.tileLayer('https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png',
 					{maxZoom: 19,
      					 attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>, Tiles courtesy of <a href="http://hot.osm.org">HOT OSM</a>'
    					});
@@ -69,14 +69,14 @@ F<!DOCTYPE html>
 	$.when(response).done(function() {
 	waterclasslayer =  L.geoJson(response.responseJSON,
       		{style: {
-			color:red,
+			color:"red",
 			weight:4;
 		}
         	onEachFeature: function(feature, layer) 
 		// {layer.bindPopup("<b>Water Classification Name: " + feature.properties.Name + "</b><br>"
   //                        +"Status: " + feature.properties.Description );
   //               }
-	}}).addTo(map);
+	}).addTo(map);
 	    
       L.geoJson(riverscientist_geojson, 
 		{color: "blue",
