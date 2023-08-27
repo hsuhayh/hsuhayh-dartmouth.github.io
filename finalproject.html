@@ -2,40 +2,39 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Lottery Winners in USA </title>
+  <title> Water in Vermont </title>
+	<h3> By Hsu Hay Thi Htwe</h3>
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
-
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	
   <style>
     #map { height: 500px; width: 500px; }
     html, body { height: 100%; margin: 0; padding: 0; }
     #buttons { padding: 10px }
   </style>
 
-
+<!-- this is for all the map layers -->
   <script>
-    var OpenStreetMap_HOT = L.tileLayer('https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
-      maxZoom: 19,
-      attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>, Tiles courtesy of <a href="http://hot.osm.org">HOT OSM</a>'
-    });
+    var OpenStreetMap_HOT = L.tileLayer('https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', 
+					{maxZoom: 19,
+      						attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>, Tiles courtesy of <a href="http://hot.osm.org">HOT OSM</a>'
+    					});
 
    var USGS = L.tileLayer('https://basemap.nationalmap.gov/arcgis/rest/services/USGSImageryOnly/MapServer/tile/{z}/{y}/{x}', 
                                        {maxZoom: 20,
 	                                      attribution: 'Tiles courtesy of the <a href="https://usgs.gov/">U.S. Geological Survey</a>'
-                                      });
+                                       });
 
-    var Stamen_TonerLite = L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/toner-lite/{z}/{x}/{y}{r}.{ext}', {
-		attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-		subdomains: 'abcd',
-		minZoom: 0,
-		maxZoom: 20,
-		ext: 'png'
-	});
+    var Stamen_TonerLite = L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/toner-lite/{z}/{x}/{y}{r}.{ext}',
+				       {attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+						subdomains: 'abcd',
+						minZoom: 0,
+						maxZoom: 20,
+						ext: 'png'
+				       });
 
-	
-
+	  
     $(document).ready(function() {
       var map = L.map('map', {
         center: [43.7034, -72.2887],
@@ -46,7 +45,7 @@
     var baseMaps = {"OSM" : OpenStreetMap_HOT, "USGS" : USGS, "Monochrome" : Stamen_TonerLite };
     L.control.layers(baseMaps).addTo(map);
 
-
+<!-- This is for all the geojson layers -->
 	    
 	
 var response= $.ajax({
@@ -82,6 +81,7 @@ var response= $.ajax({
 </head>
   
 <body>
+<!-- this is for the paragraphs and written content-->
   <h1>Lottery Winners in USA</h1>
 	<p>Do you ever wonder what it takes to be a lottery winner?
 The odds of winning a Powerball jackpot is 1 in 292.2 million. 
@@ -91,6 +91,16 @@ What if we can make your chances of being lucky higher by finding the right plac
 	<h3> Which state do you think has the most Powerball Winners?</h3>
 	<a href="https://hsuhayh.github.io/hsuhayh-dartmouth.github.io/powerballwinners.html">Go to another map that shows you data points!</a>
   <div id="map"></div>
-  
+	
+<p>These are all the geojson sources. 
+https://catalog.data.gov/dataset/vt-water-classifications-6d229
+https://catalog.data.gov/dataset/303d-lake-pond-90059
+https://catalog.data.gov/dataset/ground-water-spa-95c6f
+https://catalog.data.gov/dataset/river-scientist-regions-6644a
+https://catalog.data.gov/dataset/303d-watershed-b9fd0
+
+	https://catalog.data.gov/dataset/special-fishing-regulation-streams-rivers-ce2bd
+	https://catalog.data.gov/dataset/stressed-lake-pond-0a0e9
+</p>
 </body>
 </html>
