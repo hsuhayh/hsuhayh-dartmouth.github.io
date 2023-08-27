@@ -1,111 +1,138 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Hello Campus!</title>
+  <title>Water in Vermont</title>
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
-
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	
   <style>
     #map { height: 400px; width: 400px; }
     html, body { height: 100%; margin: 0; padding: 0; }
-    #buttons { padding: 10px, background: #f4d1c4; }
+    #buttons { padding: 10px; background: #f4d1c4; }
   </style>
-  
-<script src= "NH_Historic_and_Cultural_Features_(CT_River).geojson"> </script>
-<script src="New_Hampshire_Railroads.geojson"></script>
 
-
+<!-- this is all the sources on github for the geojson files-->
+<script src= "303(d)_lake_pond.geojson"> </script>
+<script src="303(d)_watershed.geojson"></script>
+<script src="Ground_Water_SPA.geojson"></script>
+<script src="River_Scientist_Regions.geojson"></script>
+<script src="VT_Water_Classifications.geojson"></script>
+	
+<!-- this is for all tthe map layers-->	
   <script>
-    var RailroadVisible = true;
-    var OpenStreetMap_HOT = L.tileLayer('https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
-      maxZoom: 19,
-      attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>, Tiles courtesy of <a href="http://hot.osm.org">HOT OSM</a>'
-    });
+   // var waterclassvisible = true;
+    var OpenStreetMap_HOT = L.tileLayer('https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png',
+					{maxZoom: 19,
+     					 attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>, Tiles courtesy of <a href="http://hot.osm.org">HOT OSM</a>'
+   					});
 
    var USGS = L.tileLayer('https://basemap.nationalmap.gov/arcgis/rest/services/USGSImageryOnly/MapServer/tile/{z}/{y}/{x}', 
                                        {maxZoom: 20,
-	                                      attribution: 'Tiles courtesy of the <a href="https://usgs.gov/">U.S. Geological Survey</a>'
-                                      });
+	                                attribution: 'Tiles courtesy of the <a href="https://usgs.gov/">U.S. Geological Survey</a>'
+                                       });
+  var Stamen_TonerLite = L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/toner-lite/{z}/{x}/{y}{r}.{ext}',
+				       {attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+						subdomains: 'abcd',
+						minZoom: 0,
+						maxZoom: 20,
+						ext: 'png'
+				       });
 
-    function lineSymbology(feature) {
-      var status = feature.properties.STATUS;
-      var lineWidth = 4; 
-      var lineColor = "#2CA25F";
+//     function lineSymbology(feature)
+// {
+//       var status = feature.properties.STATUS;
+//       var lineWidth = 4; 
+//       var lineColor = "#2CA25F";
 
-      if (status == "Active" ) {lineColor = "#355E3B"; lineWidth = 5; }
-      else {lineColor = "#FF0000"; lineWidth = 5; }
+//       if (status == "Active" ) {lineColor = "#355E3B"; lineWidth = 5; }
+//       else {lineColor = "#FF0000"; lineWidth = 5; }
                        
-      return {
-        color :lineColor,
-        weight: lineWidth,
-        opacity: 1
-      };
-    }
+//       return {
+//         color :lineColor,
+//         weight: lineWidth,
+//         opacity: 1
+//       };
+// }
 
-    $(document).ready(function() {
-      var map = L.map('map', {
+    $(document).ready(function()
+{
+      var map = L.map('map',
+	{
         center: [43.7034, -72.2887],
         zoom: 15,
       
-      });
+        });
 	OpenStreetMap_HOT.addTo(map);
-    var baseMaps = {"OSM" : OpenStreetMap_HOT, "USGS" : USGS };
-    L.control.layers(baseMaps).addTo(map);
+	var baseMaps = {"OSM" : OpenStreetMap_HOT, "USGS" : USGS, "Monochrome" : Stamen_TonerLite};
+    	L.control.layers(baseMaps).addTo(map);
 
-var response= $.ajax({
-	url: "Railroads2.geojson",
-	dataType: "json",
-	success: console.log("railroad data loaded!"),
-	error: function(xhr) {
-		alert(xhr.statusText);
-	}
-});
-	$.when(response).done(function() {
-	   railroadLayer =  L.geoJson(response.responseJSON,
-      		{style: lineSymbology,
-        	onEachFeature: function(feature, layer) {
-          	layer.bindPopup("<b>Railroad Name: " + feature.properties.NAME + "</b><br>"
-                         +"Status: " + feature.properties.STATUS );
-        }
-     
-      }).addTo(map);
-	    
-      L.geoJson(river_geojson, {
-        color: "blue",
-        weight: 2, 
-        opacity: 0.8,
-        onEachFeature: function(feature, layer) {
-          layer.bindPopup("<b>Conneticut River Historic Points: " +feature.properties.NAME + "</b>");
-        }
-      }).addTo(map);
-    
-    
- 
-      
-      $("#toggleRailroads").click( function() {
-        if (RailroadVisible) {
-          RailroadVisible = false;
-          railroadLayer.removeFrom(map);
-        } else {
-          RailroadVisible = true;
-          railroadLayer.addTo(map);
-        }
+// "303(d)_lake_pond.geojson"
+// "303(d)_watershed.geojson"
+// "Ground_Water_SPA.geojson"
+// "River_Scientist_Regions.geojson"
 
-      })
 	
-      });
+	var response= $.ajax({
+		url: "VT_Water_Classifications.geojson",
+		dataType: "json",
+		success: console.log("water classificiation data loaded!"),
+		error: function(xhr) {
+			alert(xhr.statusText);
+				     }
+			     });
+	$.when(response).done(function() {
+	waterclasslayer =  L.geoJson(response.responseJSON,
+      		{style: lineSymbology,
+        	onEachFeature: function(feature, layer) 
+		{layer.bindPopup("<b>Water Classification Name: " + feature.properties.NAME + "</b><br>"
+                         +"Status: " + feature.properties.STATUS );
+                }
+     		}).addTo(map);
+	    
+      L.geoJson(river_geojson, 
+		{color: "blue",
+	        weight: 2, 
+	        opacity: 0.8,
+	        onEachFeature: function(feature, layer) 
+			{layer.bindPopup("<b>Conneticut River Historic Points: " +feature.properties.NAME + "</b>");
+        		}
+      		}).addTo(map);
+    
+      $("#togglewaterclass").click( function() {
+        if (waterclassvisible) {
+          waterclassvisible = false;
+          waterclasslayer.removeFrom(map);
+        } else {
+          waterclassvisible = true;
+          waterclasslayer.addTo(map);
+        }
 
-    });
+      					      })
+	
+      					});
+});
+	  
   </script>
 </head>
   
 <body>
-  <h1>Hello Campus!</h1>
+<!-- this is for the paragraphs and written content-->
+	<h1>Water in Vermont</h1>
+	<h3>Hsu Hay Thi Htwe</h3>
+	<h4>Geog.50.02 Final Project</h4>
+
+<h4>These are all the geojson sources used.</h4>
+	<p>
+	https://catalog.data.gov/dataset/vt-water-classifications-6d229
+	https://catalog.data.gov/dataset/303d-lake-pond-90059
+	https://catalog.data.gov/dataset/ground-water-spa-95c6f
+	https://catalog.data.gov/dataset/river-scientist-regions-6644a
+	https://catalog.data.gov/dataset/303d-watershed-b9fd0	
+	</p>
   <div id="map"></div>
   <div id="button">
-    <button id="toggleRailroads"> Toggle the Railroads layer </button>
+    <button id="togglewaterclass"> Toggle the Water Classification layer </button>
   </div>
   
 </body>
