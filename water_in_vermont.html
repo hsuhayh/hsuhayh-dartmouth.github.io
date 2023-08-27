@@ -73,9 +73,9 @@ F<!DOCTYPE html>
 			weight:4;
 		}
         	onEachFeature: function(feature, layer) 
-		{layer.bindPopup("<b>Water Classification Name: " + feature.properties.Name + "</b><br>"
-                         +"Status: " + feature.properties.Description );
-                }
+		// {layer.bindPopup("<b>Water Classification Name: " + feature.properties.Name + "</b><br>"
+  //                        +"Status: " + feature.properties.Description );
+  //               }
 	}}).addTo(map);
 	    
       L.geoJson(riverscientist_geojson, 
@@ -83,8 +83,8 @@ F<!DOCTYPE html>
 	        weight: 2, 
 	        opacity: 0.8,
 	        onEachFeature: function(feature, layer) 
-			{layer.bindPopup("<b>Conneticut River Historic Points: " +feature.properties.NAME + "</b>");
-        		}
+			// {layer.bindPopup("<b>Conneticut River Historic Points: " +feature.properties.NAME + "</b>");
+   //      		}
       		}).addTo(map);
 
 	  L.geoJson(watershed_geojson, 
@@ -92,8 +92,8 @@ F<!DOCTYPE html>
 	        weight: 2, 
 	        opacity: 0.8,
 	        onEachFeature: function(feature, layer) 
-			{layer.bindPopup("<b>Conneticut River Historic Points: " +feature.properties.NAME + "</b>");
-        		}
+			// {layer.bindPopup("<b>Conneticut River Historic Points: " +feature.properties.NAME + "</b>");
+   //      		}
       		}).addTo(map);
 
 	  L.geoJson(groundwater_geojson, 
@@ -101,8 +101,8 @@ F<!DOCTYPE html>
 	        weight: 2, 
 	        opacity: 0.8,
 	        onEachFeature: function(feature, layer) 
-			{layer.bindPopup("<b>Conneticut River Historic Points: " +feature.properties.NAME + "</b>");
-        		}
+			// {layer.bindPopup("<b>Conneticut River Historic Points: " +feature.properties.NAME + "</b>");
+   //      		}
       		}).addTo(map);
 
 	  L.geoJson(river_geojson, 
@@ -110,8 +110,8 @@ F<!DOCTYPE html>
 	        weight: 2, 
 	        opacity: 0.8,
 	        onEachFeature: function(feature, layer) 
-			{layer.bindPopup("<b>Conneticut River Historic Points: " +feature.properties.NAME + "</b>");
-        		}
+			// {layer.bindPopup("<b>Conneticut River Historic Points: " +feature.properties.NAME + "</b>");
+   //      		}
       		}).addTo(map);
     
       $("#togglewaterclass").click( function() {
