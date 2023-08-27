@@ -21,7 +21,7 @@ F<!DOCTYPE html>
 <!-- this is for all tthe map layers-->	
   <script>
    var waterclasslayer;
-   var waterclassvisible = false;
+   var waterclassvisible = true;
     var OpenStreetMap_HOT = L.tileLayer('https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png',
 					{maxZoom: 19,
      					 attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>, Tiles courtesy of <a href="http://hot.osm.org">HOT OSM</a>'
@@ -83,10 +83,10 @@ F<!DOCTYPE html>
 			     });
 	$.when(response).done(function() {
 	waterclasslayer =  L.geoJson(response.responseJSON,
-      		{style: lineSymbology,
+      		{style: color:red;
         	onEachFeature: function(feature, layer) 
-		{layer.bindPopup("<b>Water Classification Name: " + feature.properties.NAME + "</b><br>"
-                         +"Status: " + feature.properties.STATUS );
+		{layer.bindPopup("<b>Water Classification Name: " + feature.properties.Name + "</b><br>"
+                         +"Status: " + feature.properties.Description );
                 }
      		}).addTo(map);
 	    
