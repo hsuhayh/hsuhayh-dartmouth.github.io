@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+F<!DOCTYPE html>
 <html>
 <head>
   <title>Water in Vermont</title>
@@ -17,12 +17,11 @@
 <script src="303(d)_watershed.geojson"></script>
 <script src="groundwater.geojson"></script>
 <script src="riverscientist.geojson"></script>
-<script src="VT_Water_Classifications.geojson"></script>
 	
 <!-- this is for all tthe map layers-->	
   <script>
    var waterclasslayer;
-   var waterclassvisible = true;
+   var waterclassvisible = false;
     var OpenStreetMap_HOT = L.tileLayer('https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png',
 					{maxZoom: 19,
      					 attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>, Tiles courtesy of <a href="http://hot.osm.org">HOT OSM</a>'
@@ -61,7 +60,7 @@
       var map = L.map('map',
 	{
         center: [44.5588, -72.5778],
-        zoom: 10,
+        zoom: 5,
       
         });
 	OpenStreetMap_HOT.addTo(map);
