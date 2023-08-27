@@ -20,6 +20,14 @@
 	
 <!-- this is for all the map layers-->	
   <script>
+function polygonstyle(feature) {
+	return{
+		fillColor: "red"
+		color: "black"
+		weight: '1'
+	 	fillOpacity: 1
+	};
+				}	
    var waterclasslayer;
    var waterclassvisible = true;
    var OpenStreetMap_HOT = L.tileLayer('https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png',
@@ -68,10 +76,7 @@
 			     });
 	$.when(response).done(function() {
 	waterclasslayer =  L.geoJson(response.responseJSON,
-      		{style: {
-			color:"red",
-			weight:4;
-		}
+      		{style: polygonstyle}
         	onEachFeature: function(feature, layer) 
 		// {layer.bindPopup("<b>Water Classification Name: " + feature.properties.Name + "</b><br>"
   //                        +"Status: " + feature.properties.Description );
