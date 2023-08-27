@@ -21,7 +21,8 @@
 	
 <!-- this is for all tthe map layers-->	
   <script>
-   // var waterclassvisible = true;
+   var waterclasslayer;
+   var waterclassvisible = true;
     var OpenStreetMap_HOT = L.tileLayer('https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png',
 					{maxZoom: 19,
      					 attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>, Tiles courtesy of <a href="http://hot.osm.org">HOT OSM</a>'
@@ -90,7 +91,34 @@
                 }
      		}).addTo(map);
 	    
-      L.geoJson(river_geojson, 
+      L.geoJson(riverscientist_geojson, 
+		{color: "blue",
+	        weight: 2, 
+	        opacity: 0.8,
+	        onEachFeature: function(feature, layer) 
+			{layer.bindPopup("<b>Conneticut River Historic Points: " +feature.properties.NAME + "</b>");
+        		}
+      		}).addTo(map);
+
+	  L.geoJson(watershed_geojson, 
+		{color: "blue",
+	        weight: 2, 
+	        opacity: 0.8,
+	        onEachFeature: function(feature, layer) 
+			{layer.bindPopup("<b>Conneticut River Historic Points: " +feature.properties.NAME + "</b>");
+        		}
+      		}).addTo(map);
+
+	  L.geoJson(groundwater_geojson, 
+		{color: "blue",
+	        weight: 2, 
+	        opacity: 0.8,
+	        onEachFeature: function(feature, layer) 
+			{layer.bindPopup("<b>Conneticut River Historic Points: " +feature.properties.NAME + "</b>");
+        		}
+      		}).addTo(map);
+
+	  L.geoJson(river_geojson, 
 		{color: "blue",
 	        weight: 2, 
 	        opacity: 0.8,
