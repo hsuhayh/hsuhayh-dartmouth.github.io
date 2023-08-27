@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Hello Campus!</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <style>
+    #map { height: 400px; width: 400px; }
+    html, body { height: 100%; margin: 0; padding: 0; }
+    #buttons { padding: 10px, background: #f4d1c4; }
+  </style>
+  
+<script src= "NH_Historic_and_Cultural_Features_(CT_River).geojson"> </script>
+<script src="New_Hampshire_Railroads.geojson"></script>
+
+
+  <script>
+    var RailroadVisible = true;
+    var OpenStreetMap_HOT = L.tileLayer('https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
+      maxZoom: 19,
+      attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>, Tiles courtesy of <a href="http://hot.osm.org">HOT OSM</a>'
+    });
+
+   var USGS = L.tileLayer('https://basemap.nationalmap.gov/arcgis/rest/services/USGSImageryOnly/MapServer/tile/{z}/{y}/{x}', 
+                                       {maxZoom: 20,
+	                                      attribution: 'Tiles courtesy of the <a href="https://usgs.gov/">U.S. Geological Survey</a>'
+                                      });
+
+    function lineSymbology(feature) {
+      var status = feature.properties.STATUS;
+      var lineWidth = 4; 
+      var lineColor = "#2CA25F";
+
+      if (status == "Active" ) {lineColor = "#355E3B"; lineWidth = 5; }
+      else {lineColor = "#FF0000"; lineWidth = 5; }
+                       
+      return {
+        color :lineColor,
+        weight: lineWidth,
+        opacity: 1
+      };
+    }
+
+    $(document).ready(function() {
+      var map = L.map('map', {
+        center: [43.7034, -72.2887],
+        zoom: 15,
+      
+      });
+	OpenStreetMap_HOT.addTo(map);
+    var baseMaps = {"OSM" : OpenStreetMap_HOT, "USGS" : USGS };
+    L.control.layers(baseMaps).addTo(map);
+
+var response= $.ajax({
+	url: "Railroads2.geojson",
+	dataType: "json",
+	success: console.log("railroad data loaded!"),
+	error: function(xhr) {
+		alert(xhr.statusText);
+	}
+});
+	$.when(response).done(function() {
+	   railroadLayer =  L.geoJson(response.responseJSON,
+      		{style: lineSymbology,
+        	onEachFeature: function(feature, layer) {
+          	layer.bindPopup("<b>Railroad Name: " + feature.properties.NAME + "</b><br>"
+                         +"Status: " + feature.properties.STATUS );
+        }
+     
+      }).addTo(map);
+	    
+      L.geoJson(river_geojson, {
+        color: "blue",
+        weight: 2, 
+        opacity: 0.8,
+        onEachFeature: function(feature, layer) {
+          layer.bindPopup("<b>Conneticut River Historic Points: " +feature.properties.NAME + "</b>");
+        }
+      }).addTo(map);
+    
+    
+ 
+      
+      $("#toggleRailroads").click( function() {
+        if (RailroadVisible) {
+          RailroadVisible = false;
+          railroadLayer.removeFrom(map);
+        } else {
+          RailroadVisible = true;
+          railroadLayer.addTo(map);
+        }
+
+      })
+	
+      });
+
+    });
+  </script>
+</head>
+  
+<body>
+  <h1>Hello Campus!</h1>
+  <div id="map"></div>
+  <div id="button">
+    <button id="toggleRailroads"> Toggle the Railroads layer </button>
+  </div>
+  
+</body>
+</html>
