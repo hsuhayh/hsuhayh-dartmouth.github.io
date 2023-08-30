@@ -13,7 +13,7 @@
   </style>
 
 <!-- this is all the sources on github for the geojson files-->
-<script src= "303(d)_lake_pond.geojson"> </script>
+<!-- <script src= "303(d)_lake_pond.geojson"> </script> -->
 <script src="303(d)_watershed.geojson"></script>
 <script src="groundwater.geojson"></script>
 
@@ -29,14 +29,14 @@
 	 	fillOpacity: 0.5
 	};
 	};
-	function waterbodiesstyle(feature) {
-	return{
-		fillColor: "red",
-		color: "black",
-		weight: '1',
-	 	fillOpacity: 0.5
-	};
-				};
+	// function waterbodiesstyle(feature) {
+	// return{
+	// 	fillColor: "red",
+	// 	color: "black",
+	// 	weight: '1',
+	//  	fillOpacity: 0.5
+	// };
+	// 			};
 		function groundwaterstyle(feature) {
 	return{
 		fillColor: "yellow",
@@ -86,10 +86,10 @@
 		{style: groundwaterstyle
       		}).addTo(map);
 
-	  L.geoJson(waterbodies_geojson, 
-		    // need to make a var for this
-		{style: waterbodiesstyle
-      		}).addTo(map);
+	 //  L.geoJson(waterbodies_geojson, 
+		//     // need to make a var for this
+		// {style: waterbodiesstyle
+  //     		}).addTo(map);
 		
 
 	$("#togglewatershed").click( function() {
@@ -102,9 +102,7 @@
 	}
 	
 	}) 
-</script>
-
-	
+</script>	
 </head>
   
 <body>
@@ -133,6 +131,9 @@
 	<li>https://catalog.data.gov/dataset/303d-lake-pond-90059</li>
 	<li>https://catalog.data.gov/dataset/ground-water-spa-95c6f</li>
 	<li>https://catalog.data.gov/dataset/303d-watershed-b9fd0</li>	
+	<li>https://www.tripadvisor.com/Attractions-g28966-Activities-c57-t162-Vermont.html</li>
+	<li>https://vtskiandride.com/8-epic-vermont-swimming-holes/</li>
+		
 	</ul>
 
   
