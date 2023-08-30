@@ -103,14 +103,15 @@ function waterclassstyle(feature) {
 		).addTo(map);
 
 	  L.geoJson(watershed_geojson, 
-		{style: watershedstyle,
+		{style: watershedstyle
 		}).addTo(map);
 
 	  L.geoJson(groundwater_geojson, 
 		{style: groundwaterstyle
       		}).addTo(map);
 
-	  L.geoJson(waterbodies, 
+	  L.geoJson(waterbodies_geojson, 
+		    // need to make a var for this
 		{style: waterbodiesstyle
       		}).addTo(map);
 		
@@ -126,10 +127,7 @@ function waterclassstyle(feature) {
       					      })
 	
       					})
-})
-	  
-	  
-  
+})  
 </script>
 </head>
   
