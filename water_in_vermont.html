@@ -16,18 +16,43 @@
 <script src= "303(d)_lake_pond.geojson"> </script>
 <script src="303(d)_watershed.geojson"></script>
 <script src="groundwater.geojson"></script>
-<script src="riverscientist.geojson"></script>
 	
-<!-- this is for all the map layers-->	
-  <script>
-function polygonstyle(feature) {
+<!-- this is for all the map 1 layers-->
+<script>
+ $(document).ready(function() {
+function waterclassstyle(feature) {
 	return{
-		fillColor: "red"
-		color: "black"
-		weight: '1'
+		fillColor: "blue",
+		color: "black",
+		weight: '1',
 	 	fillOpacity: 1
 	};
-				}	
+				};
+
+	function watershedstyle(feature) {
+	return{
+		fillColor: "green",
+		color: "black",
+		weight: '1',
+	 	fillOpacity: 0.5
+	};
+	};
+	function waterbodiesstyle(feature) {
+	return{
+		fillColor: "red",
+		color: "black",
+		weight: '1',
+	 	fillOpacity: 0.5
+	};
+				};
+		function groundwaterstyle(feature) {
+	return{
+		fillColor: "yellow",
+		color: "black",
+		weight: '1',
+	 	fillOpacity: 0.5
+	};
+				};
    var waterclasslayer;
    var waterclassvisible = true;
    var OpenStreetMap_HOT = L.tileLayer('https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png',
@@ -48,23 +73,15 @@ function polygonstyle(feature) {
 				       });
 
 
-    $(document).ready(function()
-{
       var map = L.map('map',
 	{
         center: [44.5588, -72.5778],
         zoom: 8,
-      
+      	layers: [OpenStreetMap_HOT]
         });
-	OpenStreetMap_HOT.addTo(map);
+	
 	var baseMaps = {"OSM" : OpenStreetMap_HOT, "USGS" : USGS, "Monochrome" : Stamen_TonerLite};
     	L.control.layers(baseMaps).addTo(map);
-
-// "303(d)_lake_pond.geojson"
-// "303(d)_watershed.geojson"
-// "Ground_Water_SPA.geojson"
-// "River_Scientist_Regions.geojson"
-
 	
 	var response= $.ajax({
 		url: "VT_Water_Classifications.geojson",
@@ -75,50 +92,28 @@ function polygonstyle(feature) {
 				     }
 			     });
 	$.when(response).done(function() {
-	waterclasslayer =  L.geoJson(response.responseJSON,
-      		{style: polygonstyle}
-        	onEachFeature: function(feature, layer) 
-		// {layer.bindPopup("<b>Water Classification Name: " + feature.properties.Name + "</b><br>"
-  //                        +"Status: " + feature.properties.Description );
-  //               }
-	}).addTo(map);
-	    
-      L.geoJson(riverscientist_geojson, 
-		{color: "blue",
-	        weight: 2, 
-	        opacity: 0.8,
-	        onEachFeature: function(feature, layer) 
-			// {layer.bindPopup("<b>Conneticut River Historic Points: " +feature.properties.NAME + "</b>");
-   //      		}
-      		}).addTo(map);
+	
+		waterclasslayer =  L.geoJson(response.responseJSON,
+      		{ style: waterclassstyle,
+        	onEachFeature: function(feature, layer) {
+		layer.bindPopup("<b>Water Classification Name: " + feature.properties.Name + "</b><br>"
+                      +"Status: " + feature.properties.Description);
+               }
+		}
+		).addTo(map);
 
 	  L.geoJson(watershed_geojson, 
-		{color: "blue",
-	        weight: 2, 
-	        opacity: 0.8,
-	        onEachFeature: function(feature, layer) 
-			// {layer.bindPopup("<b>Conneticut River Historic Points: " +feature.properties.NAME + "</b>");
-   //      		}
-      		}).addTo(map);
+		{style: watershedstyle,
+		}).addTo(map);
 
 	  L.geoJson(groundwater_geojson, 
-		{color: "blue",
-	        weight: 2, 
-	        opacity: 0.8,
-	        onEachFeature: function(feature, layer) 
-			// {layer.bindPopup("<b>Conneticut River Historic Points: " +feature.properties.NAME + "</b>");
-   //      		}
+		{style: groundwaterstyle
       		}).addTo(map);
 
-	  L.geoJson(river_geojson, 
-		{color: "blue",
-	        weight: 2, 
-	        opacity: 0.8,
-	        onEachFeature: function(feature, layer) 
-			// {layer.bindPopup("<b>Conneticut River Historic Points: " +feature.properties.NAME + "</b>");
-   //      		}
+	  L.geoJson(waterbodies, 
+		{style: waterbodiesstyle
       		}).addTo(map);
-    
+		
       $("#togglewaterclass").click( function() {
         if (waterclassvisible) {
           waterclassvisible = false;
@@ -130,16 +125,18 @@ function polygonstyle(feature) {
 
       					      })
 	
-      					});
-});
+      					})
+})
 	  
-  </script>
+	  
+  
+</script>
 </head>
   
 <body>
 <!-- this is for the paragraphs and written content-->
 	<h1>Water in Vermont</h1>
-	<h3>Hsu Hay Thi Htwe</h3>
+	<h3>By: Hsu Hay Thi Htwe</h3>
 	<h4>Geog.50.02 Final Project</h4>
 
 	  <div id="map"></div>
@@ -148,13 +145,12 @@ function polygonstyle(feature) {
   </div>
 
 <h4>These are all the geojson sources used.</h4>
-	<p>
-	https://catalog.data.gov/dataset/vt-water-classifications-6d229
-	https://catalog.data.gov/dataset/303d-lake-pond-90059
-	https://catalog.data.gov/dataset/ground-water-spa-95c6f
-	https://catalog.data.gov/dataset/river-scientist-regions-6644a
-	https://catalog.data.gov/dataset/303d-watershed-b9fd0	
-	</p>
+	<ul>
+	<li>https://catalog.data.gov/dataset/vt-water-classifications-6d229</li>
+	<li>https://catalog.data.gov/dataset/303d-lake-pond-90059</li>
+	<li>https://catalog.data.gov/dataset/ground-water-spa-95c6f</li>
+	<li>https://catalog.data.gov/dataset/303d-watershed-b9fd0</li>	
+	</ul>
 
   
 </body>
