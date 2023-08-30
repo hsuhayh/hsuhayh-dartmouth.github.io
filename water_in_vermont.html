@@ -7,6 +7,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 	
   <style>
+    body {background-color: #ADD8E6;}
     #map { height: 400px; width: 400px; }
     html, body { height: 100%; margin: 0; padding: 0; }
     #buttons { padding: 10px; }
@@ -26,7 +27,18 @@
 <!-- this is for all the map 1 layers-->
 <script>
  $(document).ready(function() {
+	var waterclasslayer;
+   	var waterclassvisible = true;
+	 
+	var watershedlayer;
+   	var watershedvisible = true;
 
+	var waterbodieslayer;
+   	var waterbodiesvisible = true;
+
+	var groundwaterlayer;
+   	var groundwatervisible = true;
+	 
 	 function waterclassstyle(feature) {
 	return{
 		fillColor: "blue",
@@ -60,17 +72,7 @@
 		};
 	};
 
-	var waterclasslayer;
-   	var waterclassvisible = true;
-	 
-	var watershedlayer;
-   	var watershedvisible = true;
 
-	var waterbodieslayer;
-   	var waterbodiesvisible = true;
-
-	var groundwaterlayer;
-   	var groundwatervisible = true;
 	 
    var OpenStreetMap_HOT = L.tileLayer('https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png',
 					{maxZoom: 19,
@@ -118,15 +120,15 @@
 		}
 		).addTo(map);
 		
-	  L.geoJson(watershed_geojson, 
+	  watershedlayer = L.geoJson(watershed_geojson, 
 		{style: watershedstyle
 		}).addTo(map);
 
-	  L.geoJson(groundwater_geojson, 
+	 groundwaterlayer = L.geoJson(groundwater_geojson, 
 		{style: groundwaterstyle
       		}).addTo(map);
 
-	  L.geoJson(waterbodies_geojson, 
+	 waterbodieslayer = L.geoJson(waterbodies_geojson, 
 		{style: waterbodiesstyle
       		}).addTo(map);
 		
