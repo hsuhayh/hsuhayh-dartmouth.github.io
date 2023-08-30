@@ -46,6 +46,9 @@
 	};
 				};
 
+	var watershedlayer;
+   	var watershedvisible = true;
+	 
    var OpenStreetMap_HOT = L.tileLayer('https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png',
 					{maxZoom: 19,
      					 attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>, Tiles courtesy of <a href="http://hot.osm.org">HOT OSM</a>'
@@ -89,13 +92,13 @@
       		}).addTo(map);
 		
 
-	$("#togglewaterclass").click( function() {
-	if (waterclassvisible) {
-	waterclassvisible = false;
-	waterclasslayer.removeFrom(map);
+	$("#togglewatershed").click( function() {
+	if (watershedvisible) {
+	watershedvisible = false;
+	watershedlayer.removeFrom(map);
 	} else {
-	waterclassvisible = true;
-	waterclasslayer.addTo(map);
+	watershedvisible = true;
+	watershedlayer.addTo(map);
 	}
 	
 	}) 
@@ -172,7 +175,7 @@
 
 	  <div id="map"></div>
   <div id="button">
-    <button id="togglewaterclass"> Toggle the Water Classification layer </button>
+    <button id="toggleshedclass"> Toggle the Water Shed layer </button>
   </div>
 	
 <!-- <div id="button">
