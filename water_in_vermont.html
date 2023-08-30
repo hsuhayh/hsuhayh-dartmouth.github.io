@@ -22,42 +22,35 @@
  $(document).ready(function() {
 function waterclassstyle(feature) {
 	return{
-		fillColor: "red",
+		fillColor: "black",
 		color: "black",
 		weight: '1',
 	 	fillOpacity: 1
 	};
 				};
-function riverscientiststyle(feature) {
-	return{
-		fillColor: "blue",
-		color: "black",
-		weight: '1',
-	 	fillOpacity: 1
-	};
-};
+
 	function watershedstyle(feature) {
 	return{
-		fillColor: "blue",
+		fillColor: "green",
 		color: "black",
 		weight: '1',
-	 	fillOpacity: 1
+	 	fillOpacity: 0.5
 	};
 	};
 	function waterbodiesstyle(feature) {
 	return{
-		fillColor: "blue",
+		fillColor: "red",
 		color: "black",
 		weight: '1',
-	 	fillOpacity: 1
+	 	fillOpacity: 0.5
 	};
 				};
 		function groundwaterstyle(feature) {
 	return{
-		fillColor: "blue",
+		fillColor: "yellow",
 		color: "black",
 		weight: '1',
-	 	fillOpacity: 1
+	 	fillOpacity: 0.5
 	};
 				};
    var waterclasslayer;
@@ -71,6 +64,14 @@ function riverscientiststyle(feature) {
                                        {maxZoom: 20,
 	                                attribution: 'Tiles courtesy of the <a href="https://usgs.gov/">U.S. Geological Survey</a>'
                                        });
+  var Stamen_TonerLite = L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/toner-lite/{z}/{x}/{y}{r}.{ext}',
+				       {attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+						subdomains: 'abcd',
+						minZoom: 0,
+						maxZoom: 20,
+						ext: 'png'
+				       });
+
 
       var map = L.map('map',
 	{
@@ -79,7 +80,7 @@ function riverscientiststyle(feature) {
       	layers: [OpenStreetMap_HOT]
         });
 	
-	var baseMaps = {"OSM" : OpenStreetMap_HOT, "USGS" : USGS};
+	var baseMaps = {"OSM" : OpenStreetMap_HOT, "USGS" : USGS, "Monochrome" : Stamen_TonerLite};
     	L.control.layers(baseMaps).addTo(map);
 	
 	var response= $.ajax({
@@ -100,30 +101,18 @@ function riverscientiststyle(feature) {
                }
 		}
 		).addTo(map);
-	    
-      L.geoJson(riverscientist_geojson, 
-		{style: riverscientiststyle,
-	        onEachFeature: function(feature, layer) {
-			layer.bindPopup("<b>River Scientist Name: " + feature.properties.ABNAME + "</b>");
-   	}
-      		}).addTo(map);
 
 	  L.geoJson(watershed_geojson, 
-		{style: watershedstyle,
+		{style: watershedstyle
 		}).addTo(map);
 
 	  L.geoJson(groundwater_geojson, 
 		{style: groundwaterstyle
-	     //   onEachFeature: function(feature, layer) 
-			// {layer.bindPopup("<b>Groundwater System Name: " + feature.properties.SystemName + "</b>");
-   //      		}
       		}).addTo(map);
 
-	  L.geoJson(waterbodies, 
+	  L.geoJson(waterbodies_geojson, 
+		    // need to make a var for this
 		{style: waterbodiesstyle
-	     //   onEachFeature: function(feature, layer) 
-			// {layer.bindPopup("<b>Conneticut River Historic Points: " + feature.properties.NAME + "</b>");
-   //      		}
       		}).addTo(map);
 		
       $("#togglewaterclass").click( function() {
@@ -138,9 +127,7 @@ function riverscientiststyle(feature) {
       					      })
 	
       					})
-})
-	  
-	  
+})  
 </script>
 
 </head>
