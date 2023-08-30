@@ -76,7 +76,8 @@
 	
 	var baseMaps = {"OSM" : OpenStreetMap_HOT, "USGS" : USGS, "Monochrome" : Stamen_TonerLite};
     	L.control.layers(baseMaps).addTo(map);
-	
+
+	 $.when.(baseMaps).done(function(){
 	
 	  L.geoJson(watershed_geojson, 
 		{style: watershedstyle
@@ -102,6 +103,7 @@
 	}
 	
 	}) 
+	 });
 </script>	
 </head>
   
