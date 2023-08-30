@@ -88,19 +88,17 @@
 		{style: waterbodiesstyle
       		}).addTo(map);
 		
-      $("#togglewaterclass").click( function() {
-        if (waterclassvisible) {
-          waterclassvisible = false;
-          waterclasslayer.removeFrom(map);
-        } else {
-          waterclassvisible = true;
-          waterclasslayer.addTo(map);
-        }
 
-      					      })
+	$("#togglewaterclass").click( function() {
+	if (waterclassvisible) {
+	waterclassvisible = false;
+	waterclasslayer.removeFrom(map);
+	} else {
+	waterclassvisible = true;
+	waterclasslayer.addTo(map);
+	}
 	
-      					})
-})  
+	}) 
 </script>
 
 	<!-- This is for the second map-->
@@ -161,6 +159,7 @@
                }
 		}
 		).addTo(map2);
+	});
 
 </script>
 </head>
@@ -175,6 +174,14 @@
   <div id="button">
     <button id="togglewaterclass"> Toggle the Water Classification layer </button>
   </div>
+	
+<!-- <div id="button">
+<button id="togglewaterclass"> Toggle the Water Classification layer </button>
+</div>
+	
+<div id="button">
+<button id="togglewaterclass"> Toggle the Water Classification layer </button>
+</div> -->
 
 	 <div id="map2"></div>
 <h4>These are all the geojson sources used.</h4>
