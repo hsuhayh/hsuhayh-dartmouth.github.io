@@ -48,6 +48,12 @@
 
 	var watershedlayer;
    	var watershedvisible = true;
+
+	var waterbodieslayer;
+   	var waterbodiesvisible = true;
+
+	var groundwaterlayer;
+   	var groundwatervisible = true;
 	 
    var OpenStreetMap_HOT = L.tileLayer('https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png',
 					{maxZoom: 19,
@@ -120,6 +126,26 @@
 	}
 	
 	}) 
+	$("#togglewaterbodies").click( function() {
+	if (waterbodiesvisible) {
+	waterbodiesvisible = false;
+	waterbodieslayer.removeFrom(map);
+	} else {
+	waterbodiesvisible = true;
+	waterbodieslayer.addTo(map);
+	}
+	
+	}) 
+	$("#togglegroundwater").click( function() {
+	if (groundwatervisible) {
+	groundwatervisible = false;
+	groundwaterlayer.removeFrom(map);
+	} else {
+	groundwatervisible = true;
+	groundwaterlayer.addTo(map);
+	}
+	
+	}) 
 	 });
 </script>
 	
@@ -167,17 +193,19 @@
 	<em>Here we will look at a map of the different freshwater bodies in Vermont such as groundwater, stressed and unstressed lakes and ponds, and watersheds.</em>	
 	</p>
 	  <div id="map"></div>
+	
   <div id="button">
-    <button id="togglewatershed"> Toggle the Water Shed layer </button>
+	<button id="togglewatershed"> Toggle the Water Shed layer </button>
   </div>
 	
-<!--  <div id="button">
-<button id="togglewaterclass"> Toggle the Water Classification layer </button>
+ <div id="button">
+	 <button id="togglewaterbodies"> Toggle the Lake and Ponds layer </button>
 </div> 
 	
 <div id="button">
-<button id="togglewaterclass"> Toggle the Water Classification layer </button>
-</div> -->
+	<button id="togglegroundwater"> Toggle the Water Groundwater layer </button>
+</div> 
+	
 <h3 style="font-family: Times New Roman; background-color: dodgerblue"> Water Classification in Vermont</h3>
 	<ol>
 		<li>Class A1</li>
