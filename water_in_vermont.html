@@ -27,13 +27,21 @@
 <script>
  $(document).ready(function() {
 
+	 function waterclassstyle(feature) {
+	return{
+		fillColor: "red",
+		color: "black",
+		weight: '1',
+	 	fillOpacity: 1
+		};
+	};
 	function watershedstyle(feature) {
 	return{
 		fillColor: "green",
 		color: "black",
 		weight: '1',
 	 	fillOpacity: 0.5
-	};
+		};
 	};
 	function waterbodiesstyle(feature) {
 	return{
@@ -41,17 +49,20 @@
 		color: "black",
 		weight: '1',
 	 	fillOpacity: 0.5
+		};
 	};
-				};
 		function groundwaterstyle(feature) {
 	return{
 		fillColor: "yellow",
 		color: "black",
 		weight: '1',
 	 	fillOpacity: 0.5
+		};
 	};
-				};
 
+	var waterclasslayer;
+   	var waterclassvisible = true;
+	 
 	var watershedlayer;
    	var watershedvisible = true;
 
@@ -98,7 +109,6 @@
 				     }
 			     });
 	$.when(response).done(function() {
-	
 		waterclasslayer =  L.geoJson(response.responseJSON,
       		{ style: waterclassstyle,
         	onEachFeature: function(feature, layer) {
@@ -151,71 +161,10 @@
 	groundwaterlayer.addTo(map);
 	}
 	
-	}) 
-	 });
-</script>
-	
-<!-- This is for the second map-->
-<script>
-	function waterclassstyle(feature) {
-	return{
-		fillColor: "black",
-		color: "black",
-		weight: '1',
-	 	fillOpacity: 1
-	};
-				};
-	
-  	var waterclasslayer;
-   	var waterclassvisible = true;
-	
-	var OpenStreetMap_HOT2 = L.tileLayer('https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png',
-					{maxZoom: 19,
-     					 attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>, Tiles courtesy of <a href="http://hot.osm.org">HOT OSM</a>'
-   					});
-	var USGS2 = L.tileLayer('https://basemap.nationalmap.gov/arcgis/rest/services/USGSImageryOnly/MapServer/tile/{z}/{y}/{x}', 
-                                       {maxZoom: 20,
-	                                attribution: 'Tiles courtesy of the <a href="https://usgs.gov/">U.S. Geological Survey</a>'
-                                       });
-	var Stamen_TonerLite2 = L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/toner-lite/{z}/{x}/{y}{r}.{ext}',
-				       {attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-						subdomains: 'abcd',
-						minZoom: 0,
-						maxZoom: 20,
-						ext: 'png'
-				       });
-	
-	var map2 = L.map('map2',
-	{
-	center: [44.5588, -72.5778],
-	zoom: 8,
-	layers: [OpenStreetMap_HOT2]
+	})
 		
-});	
-	
-	var baseMaps2 = {"OSM" : OpenStreetMap_HOT2, "USGS" : USGS2, "Monochrome" : Stamen_TonerLite2};
-    	L.control.layers(baseMaps2).addTo(map2);
-	
-	var response= $.ajax({
-		url: "VT_Water_Classifications.geojson",
-		dataType: "json",
-		success: console.log("water classificiation data loaded!"),
-		error: function(xhr) {
-			alert(xhr.statusText);
-				     }
-			     });
-	$.when(response).done(function() {
-	
-		waterclasslayer =  L.geoJson(response.responseJSON,
-      		{ style: waterclassstyle,
-        	onEachFeature: function(feature, layer) {
-		layer.bindPopup("<b>Water Classification Name: " + feature.properties.Name + "</b><br>"
-                      +"Status: " + feature.properties.Description);
-               }
-		}
-		).addTo(map2);
+	})
 	});
-
 </script>	
 </head>
   
