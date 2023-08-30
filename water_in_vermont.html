@@ -9,7 +9,7 @@
   <style>
     #map { height: 400px; width: 400px; }
     html, body { height: 100%; margin: 0; padding: 0; }
-    #buttons { padding: 10px; background: #f4d1c4; }
+    #buttons { padding: 10px; }
   </style>
 
 <!-- this is all the sources on github for the geojson files-->
@@ -149,13 +149,75 @@
 	 });
 </script>
 	
+<!-- This is for the second map-->
+<script>
+	function waterclassstyle(feature) {
+	return{
+		fillColor: "black",
+		color: "black",
+		weight: '1',
+	 	fillOpacity: 1
+	};
+				};
+	
+  	var waterclasslayer;
+   	var waterclassvisible = true;
+	
+	var OpenStreetMap_HOT2 = L.tileLayer('https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png',
+					{maxZoom: 19,
+     					 attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>, Tiles courtesy of <a href="http://hot.osm.org">HOT OSM</a>'
+   					});
+	var USGS2 = L.tileLayer('https://basemap.nationalmap.gov/arcgis/rest/services/USGSImageryOnly/MapServer/tile/{z}/{y}/{x}', 
+                                       {maxZoom: 20,
+	                                attribution: 'Tiles courtesy of the <a href="https://usgs.gov/">U.S. Geological Survey</a>'
+                                       });
+	var Stamen_TonerLite2 = L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/toner-lite/{z}/{x}/{y}{r}.{ext}',
+				       {attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+						subdomains: 'abcd',
+						minZoom: 0,
+						maxZoom: 20,
+						ext: 'png'
+				       });
+	
+	var map2 = L.map('map2',
+	{
+	center: [44.5588, -72.5778],
+	zoom: 8,
+	layers: [OpenStreetMap_HOT2]
+		
+});	
+	
+	var baseMaps2 = {"OSM" : OpenStreetMap_HOT2, "USGS" : USGS2, "Monochrome" : Stamen_TonerLite2};
+    	L.control.layers(baseMaps2).addTo(map2);
+	
+	var response= $.ajax({
+		url: "VT_Water_Classifications.geojson",
+		dataType: "json",
+		success: console.log("water classificiation data loaded!"),
+		error: function(xhr) {
+			alert(xhr.statusText);
+				     }
+			     });
+	$.when(response).done(function() {
+	
+		waterclasslayer =  L.geoJson(response.responseJSON,
+      		{ style: waterclassstyle,
+        	onEachFeature: function(feature, layer) {
+		layer.bindPopup("<b>Water Classification Name: " + feature.properties.Name + "</b><br>"
+                      +"Status: " + feature.properties.Description);
+               }
+		}
+		).addTo(map2);
+	});
+
+</script>	
 </head>
   
 <body>
 <!-- this is for the paragraphs and written content-->
 	<h1>Water in Vermont</h1>
-	<h3>By: Hsu Hay Thi Htwe</h3>
-	<h4>Geog.50.02 Final Project</h4>
+	<h2>By: Hsu Hay Thi Htwe</h2>
+	<h3>Geog.50.02 Final Project</h3>
 	  <img src= "water.jpg" 
          width= "700" height= "500"/>  
 <center>
@@ -176,7 +238,8 @@
 	Water has become increasingly scarce due to overuse, pollution and climate change. 
 	For this website, we will look more into water in Vermont.
 	</p>
-	<h3 style="font-family: Times New Roman; background-color: dodgerblue">Why should we care about water in Vermont</h3>
+	
+	<h2 style="font-family: Times New Roman; background-color: dodgerblue">Why should we care about water in Vermont</h2>
 	  <img src= "lake-champlain.jpg" 
          width= "600" height= "400"/>  
 	<p style="font-family: Ariel">
@@ -206,7 +269,7 @@
 	<button id="togglegroundwater"> Toggle the Water Groundwater layer </button>
 </div> 
 	
-<h3 style="font-family: Times New Roman; background-color: dodgerblue"> Water Classification in Vermont</h3>
+<h2 style="font-family: Times New Roman; background-color: dodgerblue"> Water Classification in Vermont</h2>
 	<ol>
 		<li>Class A1</li>
 			<p>
@@ -230,7 +293,8 @@
 	Water bodies demonstrating excellent or very good water quality can be reclassified as A1 or b1 status and this gives them a higher standard of protection. 
 	All waters must continue to meet criteria. Otherwise, they are listed as impaired and a restoration plan must be developed and implemented. </em>	
 	</p>
-	<h3 style="font-family: Times New Roman; background-color: dodgerblue" >Why water classification is important </h3>
+	
+	<h2 style="font-family: Times New Roman; background-color: dodgerblue" >Why water classification is important </h2>
 	<p style="font-family: Ariel">Water classification is important in many ways. It helps us manage water resources better as it provides a standardized framework for assessing the quality of various water bodies very quickly. 
 	Water classification helps us know what the body of water can be used for, if it is suitable for drinking, agricultural irrigation, recreational activities and many more.
 	For example, we know that class A1 is the best grade for water so we know that that could be used for many different purposes. 
@@ -253,7 +317,7 @@
   </div>
 <!-- 	 <div id="map2"></div> -->
 
-<h4>These are all the geojson sources used.</h4>
+<h3>These are all the geojson sources used.</h3>
 	<ul>
 	<li>https://catalog.data.gov/dataset/vt-water-classifications-6d229</li>
 	<li>https://catalog.data.gov/dataset/303d-lake-pond-90059</li>
