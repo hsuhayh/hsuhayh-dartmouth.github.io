@@ -112,8 +112,8 @@
 		waterclasslayer =  L.geoJson(response.responseJSON,
       		{ style: waterclassstyle,
         	onEachFeature: function(feature, layer) {
-		layer.bindPopup("<b>Water Body Name:" + feature.properties.Name +  "</b><br>"
-                      +"Main Water Class:" + feature.properties.AquaticBiota );
+		layer.bindPopup("<b>Water Body Name: " + feature.properties.Name +  "</b><br>"
+                      +"Main Water Classification: " + feature.properties.AquaticBiota );
                }
 		}
 		).addTo(map);
@@ -127,7 +127,6 @@
       		}).addTo(map);
 
 	  L.geoJson(waterbodies_geojson, 
-		    // need to make a var for this
 		{style: waterbodiesstyle
       		}).addTo(map);
 		
@@ -244,7 +243,7 @@
 			<strong>Good.</strong> Similar designated uses as Class A with the additon of public water supplies and for irrigation of crops and other agricultural uses. Water at or below 2500 feet is considered in Class B. 
 			</p>
 	</ol>
-	<p class="center">
+	<p>
 	<em>Vermont’s surface waters are managed to support uses valued by the public at class B2.
 	Water bodies demonstrating excellent or very good water quality can be reclassified as A1 or b1 status and this gives them a higher standard of protection. 
 	All waters must continue to meet criteria. Otherwise, they are listed as impaired and a restoration plan must be developed and implemented. </em>	
