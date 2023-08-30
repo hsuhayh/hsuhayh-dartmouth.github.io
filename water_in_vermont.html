@@ -19,7 +19,7 @@
   </style>
 
 <!-- this is all the sources on github for the geojson files-->
-<script src= "303(d)_lake_pond.geojson"> </script>
+<script src= "waterbodies.geojson"> </script>
 <script src="303(d)_watershed.geojson"></script>
 <script src="groundwater.geojson"></script>
 
@@ -126,9 +126,9 @@
 		{style: groundwaterstyle
       		}).addTo(map);
 
-	 //  L.geoJson(waterbodies_geojson, 
-		// {style: waterbodiesstyle
-  //     		}).addTo(map);
+	  L.geoJson(waterbodies_geojson, 
+		{style: waterbodiesstyle
+      		}).addTo(map);
 		
 
 	$("#togglewatershed").click( function() {
@@ -208,8 +208,9 @@
 	<p class="center">
 	<em>Here we will look at a map of the different freshwater bodies in Vermont such as groundwater, lakes and ponds, and watersheds.</em>	
 	</p>
+<center>
 	  <div id="map"></div>
-<center>	
+	
   <div id="button1">
 	<button id="togglewatershed"> Toggle the Water Shed layer </button>
   </div>
