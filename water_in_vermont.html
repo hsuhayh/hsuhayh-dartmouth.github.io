@@ -112,8 +112,8 @@
 		waterclasslayer =  L.geoJson(response.responseJSON,
       		{ style: waterclassstyle,
         	onEachFeature: function(feature, layer) {
-		layer.bindPopup("<b>Water Classification Name: " + feature.properties.Name + "</b><br>"
-                      +"Status: " + feature.properties.Description);
+		layer.bindPopup("<b>Water Body Name:" + feature.properties.Name +  "</b><br>"
+                      +"Main Water Class:" + feature.properties.AquaticBiota );
                }
 		}
 		).addTo(map);
@@ -264,8 +264,8 @@
 	Water classification can be used to tell people if a water source is contaminated and has risks of contracting waterborne diseases.	
 	</p>
 	<div>
-	  <center><img src= "ticklenaked-pond.jpg" </center>
-         width= "600" height= "400"/>    
+	  <center><img src= "ticklenaked-pond.jpg"
+         width= "600" height= "400"/>    </center> 
     <center><br><em>Ticklenaked Pond, Vermont is filled with excess phosphorus for years.
 	But after state and community efforts, the water has been cleaned up. </em></center>
   </div>
