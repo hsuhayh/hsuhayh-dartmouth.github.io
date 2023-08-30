@@ -13,7 +13,7 @@
   </style>
 
 <!-- this is all the sources on github for the geojson files-->
-<!-- <script src= "303(d)_lake_pond.geojson"> </script> -->
+<script src= "303(d)_lake_pond.geojson"> </script>
 <script src="303(d)_watershed.geojson"></script>
 <script src="groundwater.geojson"></script>
 
@@ -29,14 +29,14 @@
 	 	fillOpacity: 0.5
 	};
 	};
-	// function waterbodiesstyle(feature) {
-	// return{
-	// 	fillColor: "red",
-	// 	color: "black",
-	// 	weight: '1',
-	//  	fillOpacity: 0.5
-	// };
-	// 			};
+	function waterbodiesstyle(feature) {
+	return{
+		fillColor: "red",
+		color: "black",
+		weight: '1',
+	 	fillOpacity: 0.5
+	};
+				};
 		function groundwaterstyle(feature) {
 	return{
 		fillColor: "yellow",
@@ -78,75 +78,7 @@
     	L.control.layers(baseMaps).addTo(map);
 
 	 $.when.(baseMaps).done(function(){
-	
-	  L.geoJson(watershed_geojson, 
-		{style: watershedstyle
-		}).addTo(map);
-
-	  L.geoJson(groundwater_geojson, 
-		{style: groundwaterstyle
-      		}).addTo(map);
-
-	 //  L.geoJson(waterbodies_geojson, 
-		//     // need to make a var for this
-		// {style: waterbodiesstyle
-  //     		}).addTo(map);
-		
-
-	$("#togglewatershed").click( function() {
-	if (watershedvisible) {
-	watershedvisible = false;
-	watershedlayer.removeFrom(map);
-	} else {
-	watershedvisible = true;
-	watershedlayer.addTo(map);
-	}
-	
-	}) 
-	 });
-</script>
-	<!-- This is for the second map-->
-<script>
-	function waterclassstyle(feature) {
-	return{
-		fillColor: "black",
-		color: "black",
-		weight: '1',
-	 	fillOpacity: 1
-	};
-				};
-	
-  	var waterclasslayer;
-   	var waterclassvisible = true;
-	
-	var OpenStreetMap_HOT2 = L.tileLayer('https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png',
-					{maxZoom: 19,
-     					 attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>, Tiles courtesy of <a href="http://hot.osm.org">HOT OSM</a>'
-   					});
-	var USGS2 = L.tileLayer('https://basemap.nationalmap.gov/arcgis/rest/services/USGSImageryOnly/MapServer/tile/{z}/{y}/{x}', 
-                                       {maxZoom: 20,
-	                                attribution: 'Tiles courtesy of the <a href="https://usgs.gov/">U.S. Geological Survey</a>'
-                                       });
-	var Stamen_TonerLite2 = L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/toner-lite/{z}/{x}/{y}{r}.{ext}',
-				       {attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-						subdomains: 'abcd',
-						minZoom: 0,
-						maxZoom: 20,
-						ext: 'png'
-				       });
-	
-	var map2 = L.map2('map2',
-	{
-	center: [44.5588, -72.5778],
-	zoom: 8,
-	layers: [OpenStreetMap_HOT2]
-		
-});	
-	
-	var baseMaps2 = {"OSM" : OpenStreetMap_HOT2, "USGS" : USGS2, "Monochrome" : Stamen_TonerLite2};
-    	L.control.layers(baseMaps2).addTo(map2);
-	
-	var response= $.ajax({
+	 	var response= $.ajax({
 		url: "VT_Water_Classifications.geojson",
 		dataType: "json",
 		success: console.log("water classificiation data loaded!"),
@@ -163,10 +95,35 @@
                       +"Status: " + feature.properties.Description);
                }
 		}
-		).addTo(map2);
-	});
+		).addTo(map);
+		
+	  L.geoJson(watershed_geojson, 
+		{style: watershedstyle
+		}).addTo(map);
 
+	  L.geoJson(groundwater_geojson, 
+		{style: groundwaterstyle
+      		}).addTo(map);
+
+	  L.geoJson(waterbodies_geojson, 
+		    // need to make a var for this
+		{style: waterbodiesstyle
+      		}).addTo(map);
+		
+
+	$("#togglewatershed").click( function() {
+	if (watershedvisible) {
+	watershedvisible = false;
+	watershedlayer.removeFrom(map);
+	} else {
+	watershedvisible = true;
+	watershedlayer.addTo(map);
+	}
+	
+	}) 
+	 });
 </script>
+	
 </head>
   
 <body>
